@@ -1,8 +1,8 @@
 <?php
+namespace Domain\Context\Task\Specification;
 
 use Domain\Common\Specification\SpecificationAwareInterface;
 use Domain\Common\Specification\SpecificationInterface;
-namespace Domain\Context\Task\Specification;
 
 /**
  * Description of TaskHasValidUser
