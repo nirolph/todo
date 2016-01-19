@@ -1,0 +1,12 @@
+{
+    "name": "root/todo",
+    "authors": [
+        {
+            "name": "florin.dragota",
+            "email": "florin.dragota@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "~4.0"
+    }
+}
