@@ -1,5 +1,5 @@
 <?php
-namespace Domain\Common\Respository;
+namespace Domain\Common\Repository;
 
 use Domain\Context\Task\DAO\DAOInterface;
 

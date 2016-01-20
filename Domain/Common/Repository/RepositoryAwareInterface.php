@@ -1,7 +1,7 @@
 <?php
-namespace Domain\Common\Respository;
+namespace Domain\Common\Repository;
 
-use Domain\Common\Respository\RepositoryInterface;
+use Domain\Common\Repository\RepositoryInterface;
 
 /**
  *
