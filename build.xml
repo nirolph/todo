@@ -9,6 +9,15 @@
             </exec>
         </parallel>
     </target>
+    <target name="task-functional">
+        <parallel threadCount="4">
+            <echo message="Running unit tests with PHPUnit" />
+
+            <exec executable="phpunit" failonerror="true">
+                <arg line="-c ${basedir}/Domain/Context/Task/UnitTest/phpunit-functional.xml --colors='always'" />
+            </exec>
+        </parallel>
+    </target>
     <target name="common">
         <parallel threadCount="4">
             <echo message="Running unit tests with PHPUnit" />

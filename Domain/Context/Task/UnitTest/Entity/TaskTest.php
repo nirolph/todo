@@ -88,4 +88,13 @@ class TaskTest extends PHPUnit_Framework_TestCase
         
         $this->assertFalse($this->task->validate());
     }
+    
+    /**
+     * Task cannot be saved unless first validated
+     */
+    public function testDontSaveUnlessValidated()
+    {
+        $this->setExpectedException('\Domain\Context\Task\Exception\EntityMustValidateExeption');
+        $this->task->save();
+    }
 }

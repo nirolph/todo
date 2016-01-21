@@ -21,19 +21,43 @@ class TaskRepository implements TicketRepositoryInterface
 
     public function save(Task $task)
     {
-        $details = array(
-            'dueDate'       => $task->getDueDate()->format('Y-m-d H:i:s'),
-            'description'   => $task->getDescription()->value(),
-            'status'        => true,
-            'deleted'       => false,
-            'deletedDate'   => null,
-            'user'          => $this->getUser()->value()
-        );
-        $this->dao->create($details);
+        if (!empty($task->getDueDate())) {
+            $details['dueDate'] = $task->getDueDate()->format('Y-m-d H:i:s');
+        }
+        if (!empty($task->getDescription())) {
+            $details['description'] = $task->getDescription()->value();
+        }
+        
+        if (!empty($task->getId()))
+        {          
+            if (!empty($task->getStatus())) {
+                $details['status'] = $task->getStatus()->value();
+            }
+            if (!empty($task->getDeleted())) {
+                $details['deleted'] = $task->getDeleted()->value();
+            }
+            if ($task->getDeleteDate()) {
+                $details['deletedDate'] = $task->getDeleteDate()->format('Y-m-d H:i:s');
+            }
+            
+            $this->dao->update($task->getId()->value(), $details);
+        } else {       
+            $details['status'] = true;
+            $details['deleted'] = false;
+            $details['deletedDate'] = null;
+            
+            $this->dao->create($details);
+        }
+        
     }
 
     public function setDAO(DAOInterface $dao)
     {
         $this->dao = $dao;
+    }
+    
+    public function findById(Task $task)
+    {
+        return $this->dao->findById($task->getId()->value());
     }
 }

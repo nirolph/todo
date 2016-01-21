@@ -4,9 +4,13 @@ namespace Domain\Context\Task\Entity;
 use DateTimeImmutable;
 use Domain\Common\MessageCollector\MessageCollectorAwareInterface;
 use Domain\Common\MessageCollector\MessageCollectorInterface;
+use Domain\Common\Repository\RepositoryAwareInterface;
+use Domain\Common\Repository\RepositoryInterface;
 use Domain\Common\Specification\SpecificationAwareInterface;
 use Domain\Common\Specification\SpecificationInterface;
+use Domain\Context\Task\Exception\EntityMustValidateExeption;
 use Domain\Context\Task\ValueObject\Id;
+use Domain\Context\Task\ValueObject\Status;
 use Domain\Context\Task\ValueObject\TaskDescription;
 
 /**
@@ -19,9 +23,12 @@ class Task implements SpecificationAwareInterface,
     MessageCollectorAwareInterface,
     RepositoryAwareInterface
 {
+    private $id;
     private $description;
     private $dueDate;
-    private $user;
+    private $deleteDate;
+    private $status;
+    private $deleted;
     private $specificationChain;
     private $messageCollector;
     private $validated;
@@ -38,13 +45,16 @@ class Task implements SpecificationAwareInterface,
     
     public function validate()
     {
-        foreach ($this->specificationChain as $specification) {
-            if (!$specification->isSatisfiedBy($this)) {
-                $this->getMessageCollector()->pushError($specification->getError());
-                return false;
+        if (!empty($this->specificationChain)) {
+            foreach ($this->specificationChain as $specification) {
+                if (!$specification->isSatisfiedBy($this)) {
+                    $this->getMessageCollector()->pushError($specification->getError());
+                    return false;
+                }
             }
+            $this->validated = true;
+            return true;
         }
-        $this->validated = true;
         return true;
     }
     
@@ -53,47 +63,41 @@ class Task implements SpecificationAwareInterface,
         if ($this->validated) {
            $this->getRepository()->save($this);
         } else {
-            // throw exception to validate first
+            throw new EntityMustValidateExeption('Task must be validated prior to saving!');
         }
     }
 
-    function getDescription()
+    public function getDescription()
     {
         return $this->description;
     }
 
-    function getDueDate()
+    public function getDueDate()
     {
         return $this->dueDate;
     }
 
-    function setId(Id $id)
+    public function setId(Id $id)
     {
         $this->id = $id;
         return $this;
     }
 
-    function setDescription(TaskDescription $description)
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setDescription(TaskDescription $description)
     {
         $this->description = $description;
         return $this;
     }
 
-    function setDueDate(DateTimeImmutable $dueDate)
+    public function setDueDate(DateTimeImmutable $dueDate)
     {
         $this->dueDate = $dueDate;
         return $this;
-    }
-
-    function setUser(Id $user)
-    {
-        $this->user = $user;
-        return $this;
-    }
-
-    function getUser()
-    {
-        return $this->user;
     }
 
     public function getMessageCollector()
@@ -105,5 +109,49 @@ class Task implements SpecificationAwareInterface,
     {
         $this->messageCollector = $collector;
         return $this;
+    }
+    
+    public function getDeleteDate()
+    {
+        return $this->deleteDate;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function getDeleted()
+    {
+        return $this->deleted;
+    }
+
+    public function setDeleteDate(DateTimeImmutable $deleteDate)
+    {
+        $this->deleteDate = $deleteDate;
+        return $this;
+    }
+
+    public function setStatus(Status $status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    public function setDeleted(Status $deleted)
+    {
+        $this->deleted = $deleted;
+        $this->setDeleteDate(new DateTimeImmutable());
+        return $this;
+    }
+    
+    public function getRepository()
+    {
+        return $this->repository;
+    }
+
+    public function setRepository(RepositoryInterface $repository)
+    {
+        $this->repository = $repository;
     }
 }
