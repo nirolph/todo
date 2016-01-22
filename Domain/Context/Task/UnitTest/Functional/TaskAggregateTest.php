@@ -3,7 +3,7 @@ namespace Domain\Context\Task\UnitTest\Functional;
 
 use Domain\Common\Database\Database;
 use Domain\Context\Task\Aggregate\TaskAggregate;
-use Domain\Context\Task\Communication\Request;
+use Domain\Common\Communication\Request;
 use Domain\Context\Task\Entity\EntityFactory;
 
 /**

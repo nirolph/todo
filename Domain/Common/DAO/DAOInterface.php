@@ -1,5 +1,5 @@
 <?php
-namespace Domain\Context\Task\DAO;
+namespace Domain\Common\DAO;
 
 /**
  *

@@ -8,7 +8,8 @@ use Domain\Context\Task\Entity\Task;
  *
  * @author florin
  */
-interface TicketRepositoryInterface extends RepositoryInterface
+interface TaskRepositoryInterface extends RepositoryInterface
 {
     public function save(Task $task);
+    public function findById(Task $task);
 }

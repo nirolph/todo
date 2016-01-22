@@ -1,5 +1,5 @@
 <?php
-namespace Domain\Context\Task\Communication;
+namespace Domain\Common\Communication;
 
 use Domain\Common\Communication\RequestInterface;
 

@@ -1,8 +1,8 @@
 <?php
 namespace Domain\Context\Task\Aggregate;
 
-use Domain\Context\Task\Communication\Request;
-use Domain\Context\Task\Communication\Response;
+use Domain\Common\Communication\Request;
+use Domain\Common\Communication\Response;
 use Domain\Context\Task\Entity\EntityFactory;
 use Domain\Context\Task\Specification\TaskExists;
 use Domain\Context\Task\Specification\TaskFutureDueDate;
@@ -32,8 +32,6 @@ class TaskAggregate
     
     public function saveTask(Request $request)
     {
-        $response = new Response();
-        
         if ($request->isPost()) {
             $requestTask = $request->getData();
             
@@ -75,8 +73,6 @@ class TaskAggregate
                     'success' => true,
                     'messages' => $messageCollector->getMessages()
                 );
-                $response->setData($data);
-                return $response;
                 return $this->response(true, $messageCollector->getMessages());
             } else {
                 return $this->response(false, $task->getMessageCollector()->getErrors());
@@ -88,8 +84,6 @@ class TaskAggregate
    
     public function deleteTask(Request $request)
     {
-        $response = new Response();
-        
         if ($request->isPost()) {
             $requestTask = $request->getData();            
             
@@ -124,8 +118,6 @@ class TaskAggregate
     
     public function changeTaskStatus(Request $request)
     {
-        $response = new Response();
-        
         if ($request->isPost()) {
             $requestTask = $request->getData();            
             

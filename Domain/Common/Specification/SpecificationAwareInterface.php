@@ -7,5 +7,6 @@ namespace Domain\Common\Specification;
  */
 interface SpecificationAwareInterface
 {
-    
+    public function addSpecification(SpecificationInterface $specification);
+    public function validate();
 }

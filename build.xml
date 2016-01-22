@@ -27,5 +27,14 @@
             </exec>
         </parallel>
     </target>
+    <target name="report-context">
+        <parallel threadCount="4">
+            <echo message="Running unit tests with PHPUnit" />
+
+            <exec executable="phpunit" failonerror="true">
+                <arg line="-c ${basedir}/Domain/Context/Report/UnitTest/phpunit.xml --colors='always'" />
+            </exec>
+        </parallel>
+    </target>
 </project>
 

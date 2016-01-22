@@ -1,7 +1,7 @@
 <?php
 namespace Domain\Common\Repository;
 
-use Domain\Context\Task\DAO\DAOInterface;
+use Domain\Common\DAO\DAOInterface;
 
 /**
  *

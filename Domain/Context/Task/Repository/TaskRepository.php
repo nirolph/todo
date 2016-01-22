@@ -1,16 +1,16 @@
 <?php
 namespace Domain\Context\Task\Repository;
 
-use Domain\Context\Task\DAO\DAOInterface;
+use Domain\Common\DAO\DAOInterface;
 use Domain\Context\Task\Entity\Task;
-use Domain\Context\Task\Repository\Interfaces\TicketRepositoryInterface;
+use Domain\Context\Task\Repository\Interfaces\TaskRepositoryInterface;
 
 /**
  * Description of TaskRepository
  *
  * @author florin
  */
-class TaskRepository implements TicketRepositoryInterface
+class TaskRepository implements TaskRepositoryInterface
 {
     private $dao;
     

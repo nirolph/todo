@@ -1,6 +1,8 @@
 <?php
 namespace Domain\Context\Task\DAO;
 
+use Domain\Common\DAO\DAOInterface;
+
 /**
  * Description of TicketDao
  *

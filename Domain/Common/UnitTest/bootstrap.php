@@ -1,2 +1,3 @@
 <?php
-require_once '/var/www/html/todo/vendor/autoload.php';
+$rootPath = dirname(dirname(dirname(dirname(__FILE__))));
+require_once $rootPath . '/vendor/autoload.php';
