@@ -6,6 +6,7 @@ use Domain\Common\Communication\Response;
 use Domain\Context\Task\Entity\EntityFactory;
 use Domain\Context\Task\Specification\TaskExists;
 use Domain\Context\Task\Specification\TaskFutureDueDate;
+use Domain\Context\Task\Specification\TaskHasValidStatus;
 use Domain\Context\Task\ValueObject\Id;
 use Domain\Context\Task\ValueObject\Status;
 use Domain\Context\Task\ValueObject\TaskDescription;
@@ -130,6 +131,7 @@ class TaskAggregate
             $taskExistsSpecification = new TaskExists();
             $taskExistsSpecification->setRepository($task->getRepository());
             $task->addSpecification($taskExistsSpecification);
+            $task->addSpecification(new TaskHasValidStatus());
             $messageCollector = $task->getMessageCollector();           
             
             $task->setId(new Id($requestTask->id));

@@ -33,6 +33,11 @@ class Status implements ValueObjectInterface
             throw new InvalidValueObjectException($exception);
         }
         
+        if (!is_bool($status) || is_numeric($status)) {
+            $exception = "Status can be only 0, 1, true or false!";
+            throw new InvalidValueObjectException($exception);
+        }
+        
         if (!in_array($status, $this->validValues)) {
             $exception = "Status can be only 0, 1, true or false!";
             throw new InvalidValueObjectException($exception);

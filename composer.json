@@ -11,7 +11,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Domain\\":"Domain/"
+            "Domain\\":"Domain/",
+            "Controller\\":"Controller/"
         }
     }
 }

@@ -1,0 +1,87 @@
+html, body {
+    height: 100%;
+}
+
+header{
+    margin-bottom:25px;
+    padding-bottom:10px;
+}
+
+.wrapper{
+    min-height: 100%;
+    position:relative; 
+}
+
+main{
+    padding-bottom: 30px;
+}
+
+footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 30px;
+    padding: 25px 0 40px;
+    border-top: 1px solid #efefef;
+}
+
+aside{
+    border-right: 1px solid #efefef;
+}
+
+aside nav ul{
+    list-style-type: none;
+}
+
+aside nav ul ul{
+    padding-left:15px;
+    padding-top: 5px;
+}
+
+aside nav ul li{
+    margin-bottom: 5px;
+}
+
+aside nav ul li a{
+    padding: 5px 10px;
+    display: block;
+    text-decoration: none;
+}
+
+aside nav ul li a:hover{
+    color: #E96D63;
+    text-decoration: none;    
+}
+
+aside nav ul li a i{
+    margin-right: 10px;
+}
+
+input[type='checkbox'] + .task-label{
+    display: inline-block;
+    font-family: FontAwesome;
+    margin:0;
+}
+
+input[type='checkbox'] + .task-label:after{
+    content: "\f096";
+    font-size: 24px;
+    cursor: pointer;
+    color: #7FCA9F;
+}
+
+input[type='checkbox']:checked + .task-label:after{
+    content: "\f046";
+    font-size: 24px;
+    cursor: pointer;
+    color: #7FCA9F;
+}
+
+.description, .due-date, .options{
+    line-height:2 !important;
+}
+
+.completed-task {
+  background-color: #fafafa;
+  color: #bbb;
+}

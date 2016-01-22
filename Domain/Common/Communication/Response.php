@@ -21,4 +21,9 @@ class Response implements ResponseInterface
     {
         $this->data = json_decode(json_encode($data));
     }
+    
+    public function getJSON()
+    {
+        return json_encode((array)$this->data);
+    }
 }

@@ -17,27 +17,25 @@ class ReportDAO implements ReportDAOInterface
     
     public function fetchTasks($sorting, $pagination)
     {
-        $statement = $this->pdo->prepare('SELECT id, description, status, dueDate FROM task ORDER BY :column :order WHERE deleted = :deleted LIMIT :limit OFFSET :offset');
-        $statement->execute(array(
-            ':column' => $sorting->column,
-            ':order' => $sorting->sort,
-            ':deleted' => 0,
-            ':limit' => $pagination->tasks_per_page,
-            ':offset' => $pagination->tasks_per_page * $pagination->page,
-        ));
+        $statement = $this->pdo->prepare('SELECT id, description, status, dueDate FROM task WHERE deleted = :deleted ORDER BY :column :order LIMIT :offset,:limit');
+        $statement->bindValue(':column', $sorting->column, \PDO::PARAM_STR); 
+        $statement->bindValue(':order', $sorting->sort, \PDO::PARAM_STR); 
+        $statement->bindValue(':deleted', (int) 0, \PDO::PARAM_INT); 
+        $statement->bindValue(':limit', (int) $pagination->tasks_per_page, \PDO::PARAM_INT); 
+        $statement->bindValue(':offset', (int) $pagination->tasks_per_page * $pagination->page, \PDO::PARAM_INT); 
+        $statement->execute();
         return $statement->fetchAll();
     }
     
     public function fetchDeletedTasks($sorting, $pagination)
     {
         $statement = $this->pdo->prepare('SELECT description, status, dueDate, deletedDate FROM task ORDER BY :column :order WHERE deleted = :deleted LIMIT :limit OFFSET :offset');
-        $statement->execute(array(
-            ':column' => $sorting->column,
-            ':order' => $sorting->sort,
-            ':deleted' => 1,
-            ':limit' => $pagination->tasks_per_page,
-            ':offset' => $pagination->tasks_per_page * $pagination->page,
-        ));
+        $statement->bindValue(':column', $sorting->column, \PDO::PARAM_STR); 
+        $statement->bindValue(':order', $sorting->sort, \PDO::PARAM_STR); 
+        $statement->bindValue(':deleted', (int) 1, \PDO::PARAM_INT); 
+        $statement->bindValue(':limit', (int) $pagination->tasks_per_page, \PDO::PARAM_INT); 
+        $statement->bindValue(':offset', (int) $pagination->tasks_per_page * $pagination->page, \PDO::PARAM_INT);
+        $statement->execute();
         return $statement->fetchAll();
     }
 }
