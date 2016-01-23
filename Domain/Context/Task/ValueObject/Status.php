@@ -23,17 +23,17 @@ class Status implements ValueObjectInterface
     
     public function filter($status)
     {
-        return trim(filter_var(($status), FILTER_SANITIZE_NUMBER_INT));
+        return (is_numeric($status)) ? (int) $status : $status;
     }
 
     public function validate($status)
     {
-        if (strlen($status) == 0) {
+        if (is_string($status) && strlen(trim($status)) == 0) {
             $exception = "Status object cannot be empty!";
             throw new InvalidValueObjectException($exception);
         }
         
-        if (!is_bool($status) || is_numeric($status)) {
+        if (!is_bool($status) && !is_numeric($status)) {
             $exception = "Status can be only 0, 1, true or false!";
             throw new InvalidValueObjectException($exception);
         }

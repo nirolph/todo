@@ -14,7 +14,7 @@ class StatusTest extends PHPUnit_Framework_TestCase
 {    
     public function testInitialization()
     {
-        $string = 'ab1';
+        $string = 1;
         $status = new Status($string);
         
         $this->assertTrue($status->value());
@@ -45,6 +45,6 @@ class StatusTest extends PHPUnit_Framework_TestCase
             }
         }
         
-        $this->assertEquals(3, $exceptionCounter);
+        $this->assertEquals(4, $exceptionCounter);
     }
 }

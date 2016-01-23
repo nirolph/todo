@@ -10,5 +10,5 @@ use Domain\Common\Repository\RepositoryInterface;
 interface ReportRepositoryInterface extends RepositoryInterface
 {
     public function fetchTasks($sorting, $pagination);
-    public function fetchDeletedTasks($sorting, $pagination);
+    public function fetchDeletedTasks();
 }

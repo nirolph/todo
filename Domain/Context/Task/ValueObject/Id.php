@@ -21,7 +21,7 @@ class Id implements ValueObjectInterface
     
     public function filter($id)
     {
-        return trim($id);
+        return (int) filter_var($id, FILTER_SANITIZE_NUMBER_INT);
     }
 
     public function validate($id)
@@ -30,7 +30,7 @@ class Id implements ValueObjectInterface
             throw new InvalidValueObjectException(__CLASS__ . " is empty!");
         }
         
-        if (!ctype_digit($id)) {
+        if (!is_numeric($id)) {
             $exception = sprintf(
                 "Invalid value %s passed to %s. Only integers are supported", 
                 $id, __CLASS__

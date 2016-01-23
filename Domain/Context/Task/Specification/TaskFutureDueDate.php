@@ -28,7 +28,8 @@ class TaskFutureDueDate implements SpecificationInterface
 
     public function isSatisfiedBy(SpecificationAwareInterface $entity)
     {
-        $today = new DateTimeImmutable();
+        $currentDay = new DateTimeImmutable();
+        $today = $currentDay->setTime(0, 0, 0);
         return $entity->getDueDate() >= $today;
     }
 }

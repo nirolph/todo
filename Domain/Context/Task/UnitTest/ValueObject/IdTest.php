@@ -20,7 +20,7 @@ class IdTest extends PHPUnit_Framework_TestCase
     
     public function testInvalidId()
     {
-        $values = array("dsfd5", " 123   ", "@$#^$(_+*-+_==", 999);
+        $values = array("dsfd5", "123", "@$#^$(_+*-+_==", 999);
         $numberOfExceptions = 0;
         
         foreach ($values as $value) {
@@ -31,7 +31,7 @@ class IdTest extends PHPUnit_Framework_TestCase
             }
         }
         
-        $this->assertEquals(2, $numberOfExceptions);
+        $this->assertEquals(1, $numberOfExceptions);
     }
     
     public function testEmptyID()

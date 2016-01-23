@@ -10,5 +10,5 @@ use Domain\Common\DAO\DAOInterface;
 interface ReportDAOInterface extends DAOInterface
 {
     public function fetchTasks($sorting, $pagination);
-    public function fetchDeletedTasks($sorting, $pagination);
+    public function fetchDeletedTasks();
 }

@@ -47,7 +47,7 @@ class Report implements RepositoryAwareInterface,
     
     public function findDeleted()
     {
-        $this->tasks = $this->getRepository()->fetchDeletedTasks($this->sorting, $this->pagination);
+        $this->tasks = $this->getRepository()->fetchDeletedTasks();
         return $this;
     }
     

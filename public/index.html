@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Todo app</title>
+        <title>Todo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="public/vendor-plugins/bootstrap336/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="public/vendor-plugins/bootstrap-datepicker/bootstrap-datepicker.css">
         <link rel="stylesheet" type="text/css" href="public/css/style.css"/>
         <link rel="stylesheet" type="text/css" href="public/css/color-scheme/salmon-colors.css"/>
     </head>
@@ -14,7 +15,7 @@
         <header class="container-fluid bg-red color-white">
             <div class="row">
                 <div class="col-xs-12">
-                    <h1><i class="fa fa-mixcloud"></i> Todo app</h1>
+                    <h1><i class="fa fa-mixcloud"></i> Todo</h1>
                 </div>
             </div>
         </header>
@@ -32,33 +33,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <span>list tasks</span>
-                                    <span class="pull-right">
-                                        <i class="fa fa-list-ol"></i>
-                                    </span>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <span>today</span>
-                                            <span class="pull-right">
-                                                <i class="fa fa-calendar-o"></i>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span>7 days</span>
-                                            <span class="pull-right">
-                                                <i class="fa fa-calendar"></i>
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">
+                                <a href="#" id="taskLog" data-toggle="modal" data-target="#taskLogModal">
                                     <span>task log</span>
                                     <span class="pull-right">
                                         <i class="fa fa-book"></i>
@@ -69,115 +44,39 @@
                     </nav>
                 </aside>
                 <article class="col-xs-12 col-sm-10">
+                    <div id="messageBoard">
+                    </div>
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>Status</th>
                                 <th>
                                     Description
-                                    <a href="#">
-                                        <i class="fa fa-sort-desc"></i>
-                                    </a>
+                                    <span class="sort-icon-container">
+                                        <a href="#" data-sort-column="description" class="sort-icon" title="sort">
+                                            <i class="fa fa-sort-asc"></i>                                            
+                                            <i class="fa fa-sort-desc"></i>
+                                        </a>
+                                    </span>                                    
                                 </th>
                                 <th>
                                     Due Date
-                                    <a href="#">
-                                        <i class="fa fa-sort-desc"></i>
-                                    </a>
+                                    <span class="sort-icon-container">
+                                        <a href="#" data-sort-column="dueDate" class="sort-icon" title="sort">
+                                            <i class="fa fa-sort-asc"></i>
+                                            <i class="fa fa-sort-desc"></i>
+                                        </a>
+                                    </div>
                                 </th>
                                 <th>Options</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="completed-task">
-                                <td>
-                                    <input type="checkbox" checked id="task_1" class="hidden"/>
-                                    <label class="task-label" for="task_1"></label>
-                                </td>
-                                <td class="description">
-                                    <span>
-                                        Long Description here so don't...
-                                    </span>
-                                </td>
-                                <td class="due-date">
-                                    <span>
-                                        20/10/2016
-                                    </span>
-                                </td>
-                                <td class="options">
-                                    <a href="#" data-toggle="modal" data-target="#deleteTaskModal">
-                                        <i class="fa fa-trash-o"></i>
-                                    </a> 
-                                </td>
-                            </tr>
-                            <tr class="full-task-details hidden">
-                                <td colspan="4">
-                                    <span>
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" id="task_2" class="hidden"/>
-                                    <label class="task-label" for="task_2"></label>
-                                </td>
-                                <td class="description">
-                                    <span>
-                                        Long Description here so don't...
-                                    </span>
-                                </td>
-                                <td class="due-date">
-                                    <span>
-                                        20/10/2016
-                                    </span>
-                                </td>
-                                <td class="options">
-                                    <a href="#" data-toggle="modal" data-target="#deleteTaskModal">
-                                        <i class="fa fa-trash-o"></i>
-                                    </a> 
-                                </td>
-                            </tr>
-                            <tr class="full-task-details hidden">
-                                <td colspan="4">
-                                    <span>
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" id="task_3" class="hidden"/>
-                                    <label class="task-label" for="task_3"></label>
-                                </td>
-                                <td class="description">
-                                    <span>
-                                        Long Description here so don't...
-                                    </span>
-                                </td>
-                                <td class="due-date">
-                                    <span>
-                                        20/10/2016
-                                    </span>
-                                </td>
-                                <td class="options" data-toggle="modal" data-target="#deleteTaskModal">
-                                    <a href="#">
-                                        <i class="fa fa-trash-o"></i>
-                                    </a> 
-                                </td>
-                            </tr>
-                            <tr class="full-task-details hidden">
-                                <td colspan="4">
-                                    <span>
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
-                                    </span>
-                                </td>
-                            </tr>
+                        <tbody id="taskListTable">
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td colspan="4">
-                                   <div aria-label="First group" role="group" class="btn-group">
+                                   <div aria-label="pagination" id="pagination" role="group" class="btn-group">
                                         <button class="btn btn-default" type="button">1</button>
                                         <button class="btn btn-default" type="button">2</button>
                                         <button class="btn btn-default" type="button">3</button>
@@ -185,19 +84,19 @@
                                     </div> 
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Showing 10/page <span class="caret"></span>
+                                            Showing <span id="tasksPerPageValue">5</span>/page <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">10</a></li>
-                                            <li><a href="#">50</a></li>
-                                            <li><a href="#">100</a></li>
+                                            <li><a href="#" class="tasksPerPage" data-amount="5">5</a></li>
+                                            <li><a href="#" class="tasksPerPage" data-amount="10">10</a></li>
+                                            <li><a href="#" class="tasksPerPage" data-amount="50">50</a></li>
                                         </ul>
                                       </div>
                                 </td>
                             </tr>                            
                         </tfoot>
                     </table>
-                </article>
+                </article>                
             </section>
         </main>
         <footer class="container-fluid">
@@ -216,26 +115,44 @@
                 <h4 class="modal-title" id="myModalLabel"><i class="fa fa-plus"></i> New task</h4>
               </div>
               <div class="modal-body">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label for="newTaskDueDate">Due Date</label><br>
-                        <input type="email" class="form-control" id="dueDate" placeholder="due date">
+                <form class="form">
+                    <label for="newTaskDueDate">Due Date</label>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="sizing-addon2">
+                            <i class="fa fa-calendar-check-o"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="dd/mm/yyy" id="newTaskDueDate" aria-describedby="sizing-addon2">
                     </div><br>
                     <div class="form-group">
                         <label for="newTaskDescription">Task Description</label><br>
-                        <textarea class="form-control" id="description" placeholder="task description">
-                        </textarea>
+                        <textarea class="form-control" placeholder="Accomplish goal..." id="newTaskDescription" rows=10 style="resize:vertical;"></textarea>
                     </div>
                 </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="createNewTask">save</button>
               </div>
             </div>
           </div>
         </div>
         
+        <!-- task log Modal -->
+        <div class="modal fade" id="taskLogModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><i class="fa fa-book"></i> Deleted Tasks Log</h4>
+              </div>
+              <div class="modal-body">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+              </div>
+            </div>
+          </div>
+        </div> 
         <!-- delete task Modal -->
         <div class="modal fade" id="deleteTaskModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
@@ -249,56 +166,64 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">No, take me back</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Sure</button>
+                <button type="button" class="btn btn-danger" id="deleteTaskConfirmation" data-task-id="" data-dismiss="modal">Sure</button>
               </div>
             </div>
           </div>
         </div> 
+            <!-- message template -->
+        <div id="messageTemplate" class="hidden">
+            <div class="alert {{messageClass}} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>{{type}}</strong> {{message}}
+            </div>
+        </div>
+        <!-- task template -->
+        <div class="hidden">
+            <table>
+                <tbody id="taskTemplate">
+                    <tr class="{{statusClass}} {{taskCompletedClass}}" data-task-container="{{id}}">
+                    <td>
+                        <input type="checkbox" {{checked}} id="task_{{id}}" data-task-id="{{id}}" class="hidden taskStatusToggle"/>
+                        <label class="task-label" for="task_{{id}}"></label>
+                    </td>
+                    <td class="description" title="click to view full description">
+                        <span>
+                            {{shortDescription}}
+                        </span>
+                    </td>
+                    <td class="due-date">
+                        <span>
+                            {{dueDate}}
+                        </span>
+                    </td>
+                    <td class="options">
+                        <a href="#" data-toggle="modal" id="deleteTask_{{id}}" class="deleteTask" data-target="#deleteTaskModal" data-task-id="{{id}}">
+                            <i class="fa fa-trash-o"></i>
+                        </a> 
+                    </td>
+                    </tr>
+                    <tr class="full-task-details hidden">
+                        <td colspan="4">
+                            <span>
+                                {{longDescription}}
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>            
+        </div>
+        <!-- log entry template -->
+        <div id="logEntryTemplate" class="hidden">
+            <div class="log-entry">
+                <div class="deletedDate"> <i class="fa fa-trash-o"></i> {{date}}</div>
+                <div class="deletedTaskDescription">{{description}}</div>
+            </div>
+        </div>
         <script src="public/vendor-plugins/jquery.min.js"></script>
         <script src="public/vendor-plugins/bootstrap336/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="public/vendor-plugins/moment/moment.min.js"></script>
+        <script type="text/javascript" src="public/vendor-plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
         <script src="public/js/index.js"></script>
-    <script>
-//        $.ajax({
-//            method: "POST",
-//            url: "app.php",
-//            data: { name: "John", location: "Boston" }
-//        }).done(function( msg ) {
-//            console.log( msg );
-//        }).fail(function( msg ) {
-//            console.log('request failed');
-//        });
-    </script>
-    
-    <!-- task template -->
-    <div id="taskTemplate" class="hidden">
-        <tr class="{{statusClass}}">
-            <td>
-                <input type="checkbox" checked id="task_{{id}}" class="hidden"/>
-                <label class="task-label" for="task_{{id}}"></label>
-            </td>
-            <td class="description">
-                <span>
-                    {{shortDescription}}
-                </span>
-            </td>
-            <td class="due-date">
-                <span>
-                    {{dueDate}}
-                </span>
-            </td>
-            <td class="options">
-                <a href="#" data-toggle="modal" data-target="#deleteTaskModal" data-task-id="{{id}}">
-                    <i class="fa fa-trash-o"></i>
-                </a> 
-            </td>
-        </tr>
-        <tr class="full-task-details hidden">
-            <td colspan="4">
-                <span>
-                    {{longDescription}}
-                </span>
-            </td>
-        </tr>
-    </div>
     </body>
 </html>

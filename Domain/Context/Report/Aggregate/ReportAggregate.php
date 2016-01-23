@@ -68,21 +68,6 @@ class ReportAggregate
             $report = $this->getFactory()->buildReport();
             $messageCollector = $report->getMessageCollector();
             
-            if (!isset($requestReport->pagination)) {
-                $messageCollector->pushError('Please provide valid pagination.');
-                return $this->response(false, $messageCollector->getErrors());
-            }
-            
-            if (!isset($requestReport->sorting)) {
-                $messageCollector->pushError('Please provide valid sorting.');
-                return $this->response(false, $messageCollector->getErrors());
-            }
-                        
-            $report->addSpecification(new HasValidPagination());
-            $report->addSpecification(new HasValidSortingFields());
-            $report->setPagination($requestReport->pagination);
-            $report->setSorting($requestReport->sorting);
-            
             if ($report->validate()) {
                 $tasks = $report->findDeleted()->getTasks();
                 return $this->response(true, array(), $tasks);
@@ -99,7 +84,7 @@ class ReportAggregate
         $data = array(
             'success'   => $success,
             'messages'  => $messages,
-            'tasks'     => $queryResults
+            'data'      => $queryResults
         );
         $response->setData($data);
         return $response;

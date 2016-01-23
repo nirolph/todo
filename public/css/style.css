@@ -31,6 +31,7 @@ aside{
 
 aside nav ul{
     list-style-type: none;
+    padding: 0;
 }
 
 aside nav ul ul{
@@ -84,4 +85,53 @@ input[type='checkbox']:checked + .task-label:after{
 .completed-task {
   background-color: #fafafa;
   color: #bbb;
+}
+
+tr.full-task-details td span{
+    padding-left:25px;
+    background-color: #eaeaea;
+}
+
+tr.full-task-details td{
+    background-color: #eaeaea;
+}
+
+.log-entry{
+    border-bottom: 1px solid #efefef;
+    padding: 20px 0;
+}
+
+.log-entry .deletedDate{
+    padding: 5px 0 10px;
+    line-height: 1.5;
+    color: #999;
+}
+
+.sort-icon i{
+    position: absolute;
+    line-height: 1.2;
+}
+
+.sort-icon-container{
+    position: relative;
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+#taskListTable .description{
+    cursor: pointer;
+}
+
+#taskListTable tr td.description hidden{
+    transition: 0.5;
+}
+
+/* Important part */
+#taskLogModal .modal-dialog{
+    overflow-y: initial !important
+}
+
+#taskLogModal .modal-body{
+    height: 550px;
+    overflow-y: auto;
 }

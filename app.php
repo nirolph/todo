@@ -40,7 +40,7 @@ $controller->add('/task/delete', function(){
     $taskAggregate = new TaskAggregate();
     $taskAggregate->setFactory($factory);
     $request = new Request();
-    $response = $taskAggregate->saveTask($request);
+    $response = $taskAggregate->deleteTask($request);
     echo $response->getJSON();
 });
 

@@ -21,7 +21,7 @@ class TaskAggregateTest extends \PHPUnit_Framework_TestCase
                 
         //simulate post
         $description = 'xxxxxxxxxxxx' . microtime();
-        $dueDate = '01-01-2999';
+        $dueDate = '01/01/2999';
         $_POST['description'] = $description;
         $_POST['dueDate'] = $dueDate;
         
@@ -45,7 +45,7 @@ class TaskAggregateTest extends \PHPUnit_Framework_TestCase
         $id = $result['id'];
         
         $newDescription = 'yyyyyyyyyy' . microtime();
-        $newDueDate = '01-01-3000';
+        $newDueDate = '01/01/3000';
         $_POST['description'] = $newDescription;
         $_POST['dueDate'] = $newDueDate;
         $_POST['id'] = $id;
@@ -77,7 +77,7 @@ class TaskAggregateTest extends \PHPUnit_Framework_TestCase
                 
         //simulate post
         $description = 'zzzzzz' . microtime();
-        $dueDate = '01-01-2999';
+        $dueDate = '01/01/2999';
         $_POST['description'] = $description;
         $_POST['dueDate'] = $dueDate;
         

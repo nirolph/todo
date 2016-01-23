@@ -13,9 +13,9 @@ class ReportRepository implements ReportRepositoryInterface
 {
     private $dao;
     
-    public function fetchDeletedTasks($sorting, $pagination)
+    public function fetchDeletedTasks()
     {
-        return $this->getDAO()->fetchDeletedTasks($sorting, $pagination);
+        return $this->getDAO()->fetchDeletedTasks();
     }
 
     public function fetchTasks($sorting, $pagination)

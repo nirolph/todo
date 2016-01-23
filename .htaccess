@@ -4,7 +4,7 @@ Options -Indexes
 <IfModule mod_rewrite.c>
 
 RewriteEngine On
-RewriteCond %{REQUEST_URI}  !(\.png|\.jpg|\.gif|\.jpeg|\.bmp|\.css|\.js)$
+RewriteCond %{REQUEST_URI}  !(\.png|\.jpg|\.gif|\.jpeg|\.bmp|\.css|\.js|\.eot|\.svg|\.ttf|\.woff|\.woff2)$
 RewriteRule (.*)  app.php [QSA]
 
 </IfModule>

@@ -48,21 +48,29 @@ class TaskAggregate
                 $task->addSpecification($taskExistsSpecification);
             }
             
-            try {
-                $task->setDescription(new TaskDescription($requestTask->description));
-            } catch (\Exception $ex) {
-                $messageCollector->pushError('Please provide a valid description.');
+            if (!isset($requestTask->description)) {
+                $messageCollector->pushError('Invalid request!');
+                return $this->response(false, $messageCollector->getErrors());
+            } else {                
+                try {
+                    $task->setDescription(new TaskDescription($requestTask->description));
+                } catch (\Exception $ex) {
+                    $messageCollector->pushError('Please provide a valid description.');
+                    return $this->response(false, $messageCollector->getErrors());
+                }
             }
             
-            //try catch
-            $dueDate = \DateTimeImmutable::createFromFormat('d-m-Y H:i:s', $requestTask->dueDate . '12:00:00');
+            if (!isset($requestTask->dueDate)) {
+                $messageCollector->pushError('No due date was specified.');
+                return $this->response(false, $messageCollector->getErrors());
+            } else {                
+                $dueDate = \DateTimeImmutable::createFromFormat('d/m/Y H:i:s', $requestTask->dueDate . '12:00:00');
+            }
+            
             if (!empty($dueDate)) {
                 $task->setDueDate($dueDate);
             } else {
                 $messageCollector->pushError('Please provide a valid due date.');
-            }
-            
-            if ($messageCollector->hasErrors()) {
                 return $this->response(false, $messageCollector->getErrors());
             }
             
